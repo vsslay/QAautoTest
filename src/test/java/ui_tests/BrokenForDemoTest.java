@@ -21,7 +21,7 @@ public class BrokenForDemoTest extends BaseTest {
         open(LOGIN_PAGE_MERCHANT_URL);
     }
 
-    @Test(groups = "Elements page", testName = "Fail test")
+    @Test(groups = "Elements page", testName = "Fail test", description = "Failing test for DEMO")
     @Description("This test fails")
     @Severity(SeverityLevel.TRIVIAL)
     public void failureTest() {
