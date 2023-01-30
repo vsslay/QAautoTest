@@ -27,6 +27,5 @@ public class BrokenForDemoTest extends BaseTest {
     public void failureTest() {
         final String NO_SUCH_ELEMENT = "noSuchElementLocator";
         $(NO_SUCH_ELEMENT).click();
-
     }
 }
