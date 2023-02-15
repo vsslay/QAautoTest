@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.*;
 import static constants.constants.Urls.LOGIN_PAGE_MERCHANT_URL;
 
-@Owner("Yoana Smolka")
+@Owner("Peter Busko")
 @Epic("Account")
 @Feature("LoginAndRegister")
 @Description("Login and registration page tests")

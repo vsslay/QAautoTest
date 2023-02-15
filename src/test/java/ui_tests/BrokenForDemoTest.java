@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static constants.constants.Urls.LOGIN_PAGE_MERCHANT_URL;
 
-@Owner("Yoana Smolka")
+@Owner("Peter Busko")
 @Epic("TEST")
 @Feature("Broken test (DEMO)")
 @Description("Broken test (DEMO)")
