@@ -72,5 +72,4 @@ public class LoginAndRegistrationPageTests extends BaseTest {
                                 .confirmPolicyAgreement()
                                 .userRegistration("test_user_abc1241@mail.com", "SecretSauce12421@#");
     }
-
 }
