@@ -18,6 +18,7 @@ public class BaseTest {
     protected DashboardPage dashboardPage = new DashboardPage();
     protected QuestionnairePage questionnairePage = new QuestionnairePage();
     protected RegistrationConfirmationPage registrationConfirmationPage = new RegistrationConfirmationPage();
+    protected BackOfficePage backOfficePage = new BackOfficePage();
 
     @AfterClass(description = "Clearing cookies and storage")
     public void clearCookiesAndStorage() {
