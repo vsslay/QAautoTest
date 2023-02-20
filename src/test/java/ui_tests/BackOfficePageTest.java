@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static constants.constants.Urls.BACK_OFFICE_URL;
 
 @Owner("Peter Busko")
@@ -20,18 +19,24 @@ public class BackOfficePageTest extends BaseTest {
     @BeforeTest(description = "Navigating to URL")
     public void navigate(){
         open(BACK_OFFICE_URL);
-        sleep(600000);
+        backOfficePage.waitForLogin();
     }
-    @Test(testName = "Login with valid credentials", groups = "Login and registration page",
-            description = "Login with valid credentials")
-    @AllureId("1")
+    @Test(testName = "", groups = "Back office",
+            description = "")
+    @AllureId("")
     @Tags({@Tag("Smoke"), @Tag("Web"), @Tag("TestUI")})
-    @Story("Login and register on login page")
+    @Story("")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("User opens browser, inputting valid credentials and getting to personal account")
+    @Description("")
     public void loginWithValidCredentials(){
-        loginAndRegistrationPage.userLogin("test_user_abc@mail.ru", "SecretSauce123!@#");
-        dashboardPage.logOut();
+        backOfficePage.clickMerchants();
+        backOfficePage.searchMerchantId("");
+        backOfficePage.clickToIconFPFSettings();
         backOfficePage.changeBaseCurrency();
+        backOfficePage.switchSettings();
+        backOfficePage.chooseColors("","",
+                                       "","",
+                                   "","",
+                                     "","");
     }
 }

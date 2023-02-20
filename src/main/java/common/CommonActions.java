@@ -75,7 +75,7 @@ public class CommonActions {
             case "fast" -> Configuration.timeout = 5000;
             case "middle" -> Configuration.timeout = 10000;
             case "slow" -> Configuration.timeout = 15000;
-            default -> Assert.fail("Error while setting timeout: " + SET_WINDOW_SIZE);
+            default -> Assert.fail("Error while setting timeout: " + SET_WAIT_TIMEOUT);
         }
         return driver;
     }

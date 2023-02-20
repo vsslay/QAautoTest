@@ -2,9 +2,14 @@ package pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverConditions.*;
+import static common.config.SET_WAIT_TIMEOUT;
+import static constants.constants.Urls.BACK_OFFICE_LOGIN_URL;
 
 public class BackOfficePage {
     public static final String SIGN_IN_WITH_GOOGLE_LOCATOR = "//html/body/div[1]/div/div[2]/div[2]/button";
@@ -42,26 +47,39 @@ public class BackOfficePage {
     public static final String MAIN_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/div[2]/" +
             "div/div[2]/div[5]/div/div/div/div/div/div/div";
     public static final String OK_BUTTON_LOGO_AND_COLORS_LOCATOR = "//button[contains(text(),'Ok')]";
-    @Step("Login to BO")
-    public void userLogin(String email, String password) {
 
+    @Step("Login to BO")
+    @SuppressWarnings("ConstantConditions")
+    public void waitForLogin() {
+        Configuration.timeout = 300000;
+        webdriver().shouldHave(url(BACK_OFFICE_LOGIN_URL));
+        switch (SET_WAIT_TIMEOUT) {
+            case "fast" -> Configuration.timeout = 5000;
+            case "middle" -> Configuration.timeout = 10000;
+            case "slow" -> Configuration.timeout = 15000;
+            default -> Assert.fail("Error while setting timeout: " + SET_WAIT_TIMEOUT);
+        }
     }
+
     @Step("Click to Merchants button")
     public void clickMerchants(){
         $x(MERCHANTS_LOCATOR).shouldBe(Condition.visible).click();
         $x(SEARCH_BUTTON_LOCATOR).shouldBe(Condition.visible);
     }
+
     @Step("Search merchant id")
     public void searchMerchantId(String id){
         $x(MERCHANT_GUID_SEARCH_LOCATOR).sendKeys(id);
         $x(SEARCH_BUTTON_LOCATOR).click();
         $$x(MERCHANTS_ON_TABLE_LOCATOR).shouldHave(CollectionCondition.size(1));
     }
+
     @Step("Click to icon fpf settings")
     public void clickToIconFPFSettings(){
         $x(FPF_SETTING_LOCATOR).click();
         $x(DECRYPT_BUTTON_LOCATOR).shouldBe(Condition.visible);
     }
+
     @Step("Change Base Currency")
     public void changeBaseCurrency(){
 
@@ -75,18 +93,34 @@ public class BackOfficePage {
             $x(MAIN_SETTINGS_LOCATOR).click();
         }
     }
+
+    @Step("Checking current color")
+    public void checkColor(String locatorOfColor, String color, String colorAlternative){
+        if ($x(locatorOfColor).getText().equals(color)){
+            $x(locatorOfColor).sendKeys(colorAlternative);
+        } else {$x(locatorOfColor).sendKeys(color);}
+
+    }
+
     @Step("Choosing colors")
     public void chooseColors(String backgroundColor, String textBlackColor,
-                             String textGreyColor, String mainColor){
-     $x(BACKGROUND_COLOR_LOCATOR).click();
-     $x(BACKGROUND_COLOR_INPUT_LOCATOR).sendKeys(backgroundColor);
-     $x(TEXT_BLACK_COLOR_LOCATOR).doubleClick();
-     $x(TEXT_BLACK_COLOR_INPUT_LOCATOR).sendKeys(textBlackColor);
-     $x(TEXT_GREY_COLOR_LOCATOR).doubleClick();
-     $x(TEXT_GREY_COLOR_INPUT_LOCATOR).sendKeys(textGreyColor);
-     $x(MAIN_COLOR_LOCATOR).doubleClick();
-     $x(MAIN_COLOR_INPUT_LOCATOR).sendKeys(mainColor);
-     $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
-     $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
+                             String textGreyColor, String mainColor,
+                             String altBackgroundColor, String altTextBlackColor,
+                             String altTextGreyColor, String altMainColor){
+
+         $x(BACKGROUND_COLOR_LOCATOR).click();
+         checkColor(BACKGROUND_COLOR_INPUT_LOCATOR, backgroundColor, altBackgroundColor);
+
+         $x(TEXT_BLACK_COLOR_LOCATOR).doubleClick();
+         checkColor(TEXT_BLACK_COLOR_INPUT_LOCATOR, textBlackColor, altTextBlackColor);
+
+         $x(TEXT_GREY_COLOR_LOCATOR).doubleClick();
+         checkColor(TEXT_GREY_COLOR_INPUT_LOCATOR, textGreyColor, altTextGreyColor);
+
+         $x(MAIN_COLOR_LOCATOR).doubleClick();
+         checkColor(MAIN_COLOR_INPUT_LOCATOR, mainColor, altMainColor);
+
+         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
+         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
     }
 }

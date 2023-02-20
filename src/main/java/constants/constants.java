@@ -17,6 +17,7 @@ public class constants {
         public static final String PRIVACY_POLICY_MERCHANT_URL = "https://tempo.eu.com/privacy-policy";
 
         public static final String BACK_OFFICE_URL = "https://internal-backoffice.armenotech.dev/";
+        public static final String BACK_OFFICE_LOGIN_URL = "";
         public static final String FPF_V2_DEPOSIT_URL = "https://dev-fpf-94b9f3ed-ee84-4789-8c4b-41ee8c61ad41." +
                 "armenotech.dev/?jwt=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InNlc3Npb25fdXJsIjoiaHR0cHM6Ly" +
                 "9mYXN0LXBheW1lbnQtZmxvdy1tZXJjaGFudC5yb2NrLXdlc3QubmV0L2FwaS92Mi85NGI5ZjNlZC1lZTg0LTQ3ODktOGM0Yi00MWVlO" +
