@@ -21,22 +21,22 @@ public class BackOfficePageTest extends BaseTest {
         open(BACK_OFFICE_URL);
         backOfficePage.waitForLogin();
     }
-    @Test(testName = "", groups = "Back office",
+    @Test(testName = "choosing colors", groups = "Back office",
             description = "")
-    @AllureId("")
+    @AllureId("8")
     @Tags({@Tag("Smoke"), @Tag("Web"), @Tag("TestUI")})
-    @Story("")
+    @Story("BO")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("")
-    public void loginWithValidCredentials(){
+    @Description("FPF setting color")
+    public void choosingColors(){
         backOfficePage.clickMerchants();
-        backOfficePage.searchMerchantId("");
+        backOfficePage.searchMerchantId("94b9f3ed-ee84-4789-8c4b-41ee8c61ad41");
         backOfficePage.clickToIconFPFSettings();
-        backOfficePage.changeBaseCurrency();
-        backOfficePage.switchSettings();
-        backOfficePage.chooseColors("","",
-                                       "","",
-                                   "","",
-                                     "","");
+//        backOfficePage.changeBaseCurrency();
+        backOfficePage.switchToColors();
+        backOfficePage.chooseColors("#FFFFFF","#2C2C2C",
+                                       "#B1AEAE","#3530FD",
+                                   "#4C4C4C","#FFFFFF",
+                                     "#7FC103","#EF1E98");
     }
 }

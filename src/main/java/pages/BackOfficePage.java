@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -20,8 +21,9 @@ public class BackOfficePage {
             "div[2]/div/div[2]/a[3]";
     public static final String MERCHANT_GUID_SEARCH_LOCATOR = "//input[@id='queryTransactions_params_0_input']";
     public static final String SEARCH_BUTTON_LOCATOR = "//button[contains(text(),'Search')]";
-    public static final String FPF_SETTING_LOCATOR = "//html/body/div[1]/div/section/div/main/div/div[2]/div/div/div/" +
-            "div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr/td[9]/div/div[2]/div/span/svg";
+    public static final String FPF_SETTING_LOCATOR = "//*[@id='root']/div/section/div/main/div/div[2]/div/div/div/" +
+            "div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr/td[9]/div/div[2]/div/span";
+    public static final String FPF_SETTINGS_WINDOW_LOCATOR = "//*[contains(text(),'FPF Settings')]";
     public static final String MERCHANTS_ON_TABLE_LOCATOR = "//*[@id='root']/div/section/div/main/div/div[2]/div/div/" +
             "div/div[2]/div/div/div/div[2]/div/div/div/div/div/table/tbody/tr";
     public static final String DECRYPT_BUTTON_LOCATOR = "//span[contains(text(),'Decrypt')]/parent::button";
@@ -31,8 +33,7 @@ public class BackOfficePage {
             "div/div[1]/div[3]/div/div/div/div/div";
     public static final String OK_BUTTON_MAIN_SETTINGS_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[3]/" +
             "button[2]";
-    public static final String LOGO_AND_COLORS_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/" +
-            "div[1]/div[1]/div/div[2]";
+    public static final String LOGO_AND_COLORS_LOCATOR = "//*[contains(text(),'Logo and colors')]";
     public static final String BACKGROUND_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/" +
             "div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div";
     public static final String BACKGROUND_COLOR_INPUT_LOCATOR = "//input[@id='rc-editable-input-3']";
@@ -76,8 +77,7 @@ public class BackOfficePage {
 
     @Step("Click to icon fpf settings")
     public void clickToIconFPFSettings(){
-        $x(FPF_SETTING_LOCATOR).click();
-        $x(DECRYPT_BUTTON_LOCATOR).shouldBe(Condition.visible);
+        $x(FPF_SETTING_LOCATOR).shouldBe(Condition.visible).click(ClickOptions.usingJavaScript());
     }
 
     @Step("Change Base Currency")
@@ -86,12 +86,24 @@ public class BackOfficePage {
     }
     @Step("Switch between Main and Colors Settings")
     public void switchSettings(){
+        $x(FPF_SETTINGS_WINDOW_LOCATOR).shouldBe(Condition.visible);
         if ($x(DECRYPT_BUTTON_LOCATOR).isDisplayed()) {
             $x(LOGO_AND_COLORS_LOCATOR).click();
         }
         else {
             $x(MAIN_SETTINGS_LOCATOR).click();
         }
+    }
+    @Step("Switch between Main and Colors Settings")
+    public void switchToColors(){
+        $x(FPF_SETTINGS_WINDOW_LOCATOR).shouldBe(Condition.visible);
+        $x(LOGO_AND_COLORS_LOCATOR).click();
+        $x(MAIN_COLOR_LOCATOR).shouldBe(Condition.visible);
+    }
+    @Step("Switch between Main and Colors Settings")
+    public void switchToMainSettings(){
+        $x(FPF_SETTINGS_WINDOW_LOCATOR).shouldBe(Condition.visible);
+        $x(MAIN_SETTINGS_LOCATOR).click();
     }
 
     @Step("Checking current color")
