@@ -1,9 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.*;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
@@ -48,11 +45,20 @@ public class BackOfficePage {
     public static final String MAIN_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/div[2]/" +
             "div/div[2]/div[5]/div/div/div/div/div/div/div";
     public static final String OK_BUTTON_LOGO_AND_COLORS_LOCATOR = "//button[contains(text(),'Ok')]";
+    public static final String GOOGLE_EMAIL_INPUT_LOCATOR = "//input[@type='email']";
+    public static final String GOOGLE_PASSWORD_INPUT_LOCATOR = "//input[@name='password']";
+    public static final String GOOGLE_CONTINUE_BUTTON_LOCATOR = "//span[contains(text(),'Далее')]/parent::button";
 
     @Step("Login to BO")
     @SuppressWarnings("ConstantConditions")
-    public void waitForLogin() {
+    public void waitForLogin(String googleEmail, String googlePassword) {
         Configuration.timeout = 300000;
+        Selenide.switchTo().window(1);
+        $x(GOOGLE_EMAIL_INPUT_LOCATOR).sendKeys(googleEmail);
+        $x(GOOGLE_CONTINUE_BUTTON_LOCATOR).click();
+        $x(GOOGLE_PASSWORD_INPUT_LOCATOR).sendKeys(googlePassword);
+        $x(GOOGLE_CONTINUE_BUTTON_LOCATOR).click();
+        Selenide.switchTo().window(0);
         webdriver().shouldHave(url(BACK_OFFICE_LOGIN_URL));
         switch (SET_WAIT_TIMEOUT) {
             case "fast" -> Configuration.timeout = 5000;

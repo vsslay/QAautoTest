@@ -19,7 +19,8 @@ public class BackOfficePageTest extends BaseTest {
     @BeforeTest(description = "Navigating to URL")
     public void navigate(){
         open(BACK_OFFICE_URL);
-        backOfficePage.waitForLogin();
+        backOfficePage.waitForLogin("backoffice.admin@armenotech.com",
+                                    "qlodYjqmJbF2kohua2dD4q0DBVIxOV");
     }
     @Test(testName = "choosing colors", groups = "Back office",
             description = "")
