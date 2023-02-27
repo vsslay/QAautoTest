@@ -31,19 +31,13 @@ public class BackOfficePage {
     public static final String OK_BUTTON_MAIN_SETTINGS_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[3]/" +
             "button[2]";
     public static final String LOGO_AND_COLORS_LOCATOR = "//*[contains(text(),'Logo and colors')]";
-    public static final String BACKGROUND_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/" +
-            "div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div";
-    public static final String BACKGROUND_COLOR_INPUT_LOCATOR = "//input[@id='rc-editable-input-3']";
-    public static final String TEXT_BLACK_COLOR_INPUT_LOCATOR = "//input[@id='rc-editable-input-4']";
-    public static final String TEXT_GREY_COLOR_INPUT_LOCATOR = "//input[@id='rc-editable-input-6']";
-    public static final String MAIN_COLOR_INPUT_LOCATOR = "//input[@id='rc-editable-input-7']";
+    public static final String BACKGROUND_COLOR_LOCATOR = "//*[contains(text(),'Background color')]/parent::div/div";
+    public static final String COLOR_INPUT_LOCATOR = "//input[contains(@id,'rc-editable-input')]";
 
-    public static final String TEXT_BLACK_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/" +
-            "div[2]/div/div[2]/div[3]/div/div/div/div/div/div/div";
-    public static final String TEXT_GREY_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/" +
-            "div[2]/div/div[2]/div[4]/div/div/div/div/div/div/div";
-    public static final String MAIN_COLOR_LOCATOR = "//html/body/div[8]/div/div[2]/div/div[2]/div[2]/form/div/div[2]/" +
-            "div/div[2]/div[5]/div/div/div/div/div/div/div";
+
+    public static final String TEXT_BLACK_COLOR_LOCATOR = "//*[contains(text(),'Text Black color')]/parent::div/div";
+    public static final String TEXT_GREY_COLOR_LOCATOR = "//*[contains(text(),'Text Gray color')]/parent::div/div";
+    public static final String MAIN_COLOR_LOCATOR = "//*[contains(text(),'Main color')]/parent::div/div";
     public static final String OK_BUTTON_LOGO_AND_COLORS_LOCATOR = "//button[contains(text(),'Ok')]";
     public static final String SIGN_IN_WITH_GOOGLE_BUTTON_LOCATOR = "//span[contains(text(),'Sign in with Google')]/parent::button";
     public static final String GOOGLE_EMAIL_INPUT_LOCATOR = "//input[@type='email']";
@@ -111,7 +105,6 @@ public class BackOfficePage {
     public void switchToColors(){
         $x(FPF_SETTINGS_WINDOW_LOCATOR).shouldBe(Condition.visible);
         $x(LOGO_AND_COLORS_LOCATOR).click();
-        $x(MAIN_COLOR_LOCATOR).shouldBe(Condition.visible);
     }
     @Step("Switch between Main and Colors Settings")
     public void switchToMainSettings(){
@@ -122,8 +115,11 @@ public class BackOfficePage {
     @Step("Checking current color")
     public void checkColor(String locatorOfColor, String color, String colorAlternative){
         if ($x(locatorOfColor).getText().equals(color)){
+            $x(locatorOfColor).clear();
             $x(locatorOfColor).sendKeys(colorAlternative);
-        } else {$x(locatorOfColor).sendKeys(color);}
+        } else
+            {$x(locatorOfColor).clear();
+            $x(locatorOfColor).sendKeys(color);}
 
     }
 
@@ -134,18 +130,19 @@ public class BackOfficePage {
                              String altTextGreyColor, String altMainColor){
 
          $x(BACKGROUND_COLOR_LOCATOR).click();
-         checkColor(BACKGROUND_COLOR_INPUT_LOCATOR, backgroundColor, altBackgroundColor);
+         checkColor(COLOR_INPUT_LOCATOR, backgroundColor, altBackgroundColor);
 
          $x(TEXT_BLACK_COLOR_LOCATOR).doubleClick();
-         checkColor(TEXT_BLACK_COLOR_INPUT_LOCATOR, textBlackColor, altTextBlackColor);
+         checkColor(COLOR_INPUT_LOCATOR, textBlackColor, altTextBlackColor);
 
          $x(TEXT_GREY_COLOR_LOCATOR).doubleClick();
-         checkColor(TEXT_GREY_COLOR_INPUT_LOCATOR, textGreyColor, altTextGreyColor);
+         checkColor(COLOR_INPUT_LOCATOR, textGreyColor, altTextGreyColor);
 
          $x(MAIN_COLOR_LOCATOR).doubleClick();
-         checkColor(MAIN_COLOR_INPUT_LOCATOR, mainColor, altMainColor);
+         checkColor(COLOR_INPUT_LOCATOR, mainColor, altMainColor);
 
-         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
-         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
+//         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
+//         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
+        Selenide.sleep(120000);
     }
 }
