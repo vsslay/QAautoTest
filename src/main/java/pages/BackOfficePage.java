@@ -9,6 +9,7 @@ import static com.codeborne.selenide.WebDriverConditions.*;
 import static common.config.SET_WAIT_TIMEOUT;
 import static constants.constants.Urls.BACK_OFFICE_LOGIN_URL;
 
+@SuppressWarnings("unused")
 public class BackOfficePage {
 
     public static final String LOGIN_BACKOFFICE_LOCATOR = "//html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/" +
@@ -84,6 +85,7 @@ public class BackOfficePage {
 
     @Step("Click to icon fpf settings")
     public void clickToIconFPFSettings(){
+        Selenide.sleep(2000);
         $x(FPF_SETTING_LOCATOR).shouldBe(Condition.visible).click(ClickOptions.usingJavaScript());
     }
 
