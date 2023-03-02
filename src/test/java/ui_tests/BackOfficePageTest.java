@@ -35,9 +35,10 @@ public class BackOfficePageTest extends BaseTest {
         backOfficePage.clickToIconFPFSettings();
 //        backOfficePage.changeBaseCurrency();
         backOfficePage.switchToColors();
-        backOfficePage.chooseColors("#FFFFFF","#2C2C2C",
-                                       "#B1AEAE","#3530FD",
-                                   "#4C4C4C","#FFFFFF",
-                                     "#7FC103","#EF1E98");
+        backOfficePage.chooseColors("FFFFFF","2C2C2C",
+                                       "B1AEAE","3530FD",
+                                   "4C4C4C","FFFFFF",
+                                     "7FC103","EF1E98");
     }
+
 }

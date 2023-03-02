@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.*;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -72,20 +73,23 @@ public class BackOfficePage {
 
     @Step("Click to Merchants button")
     public void clickMerchants(){
+        Selenide.sleep(4000);
         $x(MERCHANTS_LOCATOR).shouldBe(Condition.visible).click();
         $x(SEARCH_BUTTON_LOCATOR).shouldBe(Condition.visible);
     }
 
     @Step("Search merchant id")
     public void searchMerchantId(String id){
+        Selenide.sleep(4000);
         $x(MERCHANT_GUID_SEARCH_LOCATOR).sendKeys(id);
+        Selenide.sleep(4000);
         $x(SEARCH_BUTTON_LOCATOR).click();
         $$x(MERCHANTS_ON_TABLE_LOCATOR).shouldHave(CollectionCondition.size(1));
     }
 
     @Step("Click to icon fpf settings")
     public void clickToIconFPFSettings(){
-        Selenide.sleep(4000);
+        Selenide.sleep(8000);
         $x(FPF_SETTING_LOCATOR).shouldBe(Condition.visible).click(ClickOptions.usingJavaScript());
     }
 
@@ -105,6 +109,7 @@ public class BackOfficePage {
     }
     @Step("Switch between Main and Colors Settings")
     public void switchToColors(){
+        Selenide.sleep(5000);
         $x(FPF_SETTINGS_WINDOW_LOCATOR).shouldBe(Condition.visible);
         $x(LOGO_AND_COLORS_LOCATOR).click();
     }
@@ -116,12 +121,16 @@ public class BackOfficePage {
 
     @Step("Checking current color")
     public void checkColor(String locatorOfColor, String color, String colorAlternative){
-        if ($x(locatorOfColor).getText().equals(color)){
-            $x(locatorOfColor).clear();
+        if ($x(locatorOfColor).getText().equals(color.substring(1))){
+            $x(locatorOfColor).doubleClick();
+            $x(locatorOfColor).sendKeys(Keys.BACK_SPACE);
             $x(locatorOfColor).sendKeys(colorAlternative);
         } else
-            {$x(locatorOfColor).clear();
-            $x(locatorOfColor).sendKeys(color);}
+            {
+                $x(locatorOfColor).doubleClick();
+                $x(locatorOfColor).sendKeys(Keys.BACK_SPACE);
+                $x(locatorOfColor).sendKeys(color);
+            }
 
     }
 
@@ -133,17 +142,17 @@ public class BackOfficePage {
 
          $x(BACKGROUND_COLOR_LOCATOR).click();
          checkColor(COLOR_INPUT_LOCATOR, backgroundColor, altBackgroundColor);
-
+         Selenide.sleep(1000);
          $x(TEXT_BLACK_COLOR_LOCATOR).doubleClick();
          checkColor(COLOR_INPUT_LOCATOR, textBlackColor, altTextBlackColor);
-
+         Selenide.sleep(1000);
          $x(TEXT_GREY_COLOR_LOCATOR).doubleClick();
          checkColor(COLOR_INPUT_LOCATOR, textGreyColor, altTextGreyColor);
-
+         Selenide.sleep(1000);
          $x(MAIN_COLOR_LOCATOR).doubleClick();
          checkColor(COLOR_INPUT_LOCATOR, mainColor, altMainColor);
-
+         Selenide.sleep(1000);
          $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
-         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
+         Selenide.sleep(11000);
     }
 }

@@ -22,8 +22,8 @@ public class config {
     /**
      * Active constant will be used for setting up window size
      */
-    public static final String SET_WINDOW_SIZE = "maximize";
-    //public static final String SET_WINDOW_SIZE = "minimize";
+//    public static final String SET_WINDOW_SIZE = "maximize";
+    public static final String SET_WINDOW_SIZE = "minimize";
     //public static final String SET_WINDOW_SIZE = "default";
 
 //____________________________________________________ Wait timeout ____________________________________________________
