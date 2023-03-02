@@ -85,7 +85,7 @@ public class BackOfficePage {
 
     @Step("Click to icon fpf settings")
     public void clickToIconFPFSettings(){
-        Selenide.sleep(2000);
+        Selenide.sleep(4000);
         $x(FPF_SETTING_LOCATOR).shouldBe(Condition.visible).click(ClickOptions.usingJavaScript());
     }
 
