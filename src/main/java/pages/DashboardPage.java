@@ -3,11 +3,7 @@ package pages;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.selector.ByText;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selectors.byText;

@@ -1,6 +1,6 @@
 package common;
 
-@SuppressWarnings({"CommentedOutCode", "RedundantSuppression"})
+@SuppressWarnings("ALL")
 public class config {
 
 //________________________________________________ Browser and Platform _________________________________________________

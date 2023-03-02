@@ -7,6 +7,7 @@ public class constants {
     }
 
 //_________________________________________________________URLs_________________________________________________________
+    @SuppressWarnings("unused")
     public static class Urls{
         public static final String BASE_MERCHANT_URL = "https://merchant.armenotech.dev/";
         public static final String LOGIN_PAGE_MERCHANT_URL = BASE_MERCHANT_URL + "login";

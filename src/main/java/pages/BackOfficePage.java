@@ -143,8 +143,7 @@ public class BackOfficePage {
          $x(MAIN_COLOR_LOCATOR).doubleClick();
          checkColor(COLOR_INPUT_LOCATOR, mainColor, altMainColor);
 
-//         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
-//         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
-        Selenide.sleep(120000);
+         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).doubleClick();
+         $x(OK_BUTTON_LOGO_AND_COLORS_LOCATOR).shouldNotBe(Condition.visible);
     }
 }

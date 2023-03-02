@@ -8,6 +8,7 @@ import pages.*;
 
 import static common.config.*;
 
+@SuppressWarnings("unused")
 public class BaseTest {
 
     @SuppressWarnings("unused")

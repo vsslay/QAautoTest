@@ -23,7 +23,7 @@ public class BackOfficePageTest extends BaseTest {
                                     "qlodYjqmJbF2kohua2dD4q0DBVIxOV");
     }
     @Test(testName = "choosing colors", groups = "Back office",
-            description = "")
+            description = "Setting FPF color")
     @AllureId("8")
     @Tags({@Tag("Smoke"), @Tag("Web"), @Tag("TestUI")})
     @Story("BO")
